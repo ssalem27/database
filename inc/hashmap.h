@@ -1,2 +1,6 @@
 #include "stdlib.h"
-#include "node.h"
+#include "llist.h"
+
+class hashmap{
+
+};
