@@ -14,10 +14,8 @@ class Llist{
     public:
         Llist();
         int append(Node *node);
-        int deleteNode(char* key);
+        Node* deleteNode(char* key);
         Node* get(char* key);
-        int updateVal(char* key, char* value);
-        int updateKey(char* oldKey, char* newKey);
         void freeList();
         void printList();
 };

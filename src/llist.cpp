@@ -5,6 +5,7 @@
 Llist::Llist(){
     this->head = NULL;
     this->tail = NULL;
+    this->length = 0;
 }
 
 
@@ -23,13 +24,14 @@ int Llist::append(Node *node){
 }
 
 
-int Llist::deleteNode(char *key){
+Node* Llist::deleteNode(char *key){
     Node* node = NULL;
+    Node* deleted = NULL;
     Node* nodeNext = NULL; 
     Node* current = this->head;
     
     if(!current){
-        return -1;
+        return NULL;
     }
 
     if(head->compare(key)){
@@ -37,12 +39,14 @@ int Llist::deleteNode(char *key){
         if(head->next){
             node = head->next;
             head->freeNode();
+            deleted = head;
             head = node;
-            return 0;
+            return deleted;
         }
         head->freeNode();
+        deleted = head;
         head = tail = NULL;
-        return 0;
+        return deleted;
     }
     while(current->next){
         if(current->next->compare(key)){
@@ -50,12 +54,13 @@ int Llist::deleteNode(char *key){
             nodeNext = node->next;
             current->next = nodeNext;
             node->freeNode();
+            deleted = node;
             this->length--;
-            return 0;
+            return deleted;
         }
         current = current->next;
     }
-    return -1;
+    return NULL;
 }
 
 Node* Llist::get(char *key){
@@ -68,14 +73,6 @@ Node* Llist::get(char *key){
     }
     return NULL;
 
-}
-
-int Llist::updateVal(char *key, char *value){
-    return get(key)->setValue(value);
-}
-
-int Llist::updateKey(char *oldKey, char *newKey){
-    return get(oldKey)->setKey(newKey);
 }
 
 void Llist::freeList(){

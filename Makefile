@@ -27,7 +27,7 @@ BINDIR=.
 INCLUDE=$(addprefix -I,$(INCDIR))
 HEADERS=$(wildcard $(INCDIR)/*.h)
 CFLAGS=$(OPTS) $(INCLUDE) $(DEBUG)
-OBJECTS=$(addprefix $(OBJDIR)/,node.o llist.o)
+OBJECTS=$(addprefix $(OBJDIR)/,node.o llist.o row.o)
 #--------------------------------------------------------------------
 # Build Recipies for the Executables (binary)
 #--------------------------------------------------------------------
@@ -44,6 +44,10 @@ $(OBJDIR)/node.o: $(SRCDIR)/node.cpp $(INCDIR)/node.h
 $(OBJDIR)/llist.o: $(SRCDIR)/llist.cpp $(INCDIR)/llist.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 #	g++ llist.cpp  
+
+$(OBJDIR)/row.o: $(SRCDIR)/row.cpp $(INCDIR)/row.h
+	$(CC) -c $(CFLAGS) -o $@ $<
+#	g++ row.cpp  
 
 
 clean:
