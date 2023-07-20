@@ -27,7 +27,7 @@ BINDIR=.
 INCLUDE=$(addprefix -I,$(INCDIR))
 HEADERS=$(wildcard $(INCDIR)/*.h)
 CFLAGS=$(OPTS) $(INCLUDE) $(DEBUG)
-OBJECTS=$(addprefix $(OBJDIR)/,node.o)
+OBJECTS=$(addprefix $(OBJDIR)/,node.o llist.o)
 #--------------------------------------------------------------------
 # Build Recipies for the Executables (binary)
 #--------------------------------------------------------------------
@@ -35,11 +35,15 @@ all: database
 
 database: $(OBJECTS) 
 	$(CC) $(CFLAGS) -o $@ $^
-#	g++ -Wall -std=gnu11 -o database node.o
+#	g++ -Wall -std=gnu11 -o database node.o llist.o
 
 $(OBJDIR)/node.o: $(SRCDIR)/node.cpp $(INCDIR)/node.h
 	$(CC) -c $(CFLAGS) -o $@ $<
-#	g++ -Wall -g -std=gnu11 -c node.cpp  
+#	g++ node.cpp  
+
+$(OBJDIR)/llist.o: $(SRCDIR)/llist.cpp $(INCDIR)/llist.h
+	$(CC) -c $(CFLAGS) -o $@ $<
+#	g++ llist.cpp  
 
 
 clean:

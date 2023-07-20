@@ -14,11 +14,15 @@ class Node{
         char *value;
 
     public:
+        Node *next;
         Node(char *key=NULL, char*value=NULL);
         int setKey(char* key);
         int setValue(char* value);
         char* getKey();
         char* getValue();
+        void freeNode();
+        void printNode();
+        int compare(char* key);
 };
 
 #endif /*NODE_H*/

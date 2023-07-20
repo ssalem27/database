@@ -3,14 +3,16 @@
 Node::Node(char *key, char *value){
     this->setKey(key);
     this->setValue(value);
+    this->next = NULL;
 }
 
 int Node::setKey(char* key){
+    int size = 0;
     if(!key){
         this->key = NULL;
         return 0;
     }
-    int size = sizeof(key);
+    size = sizeof(key);
     this->key = (char*) calloc(1,size);
     if(this->key == NULL){
         return 0;
@@ -21,11 +23,12 @@ int Node::setKey(char* key){
 }
 
 int Node::setValue(char* value){
+    int size = 0;
     if(!value){
         this->value = NULL;
         return 0;
     }
-    int size = sizeof(value);
+    size = sizeof(value);
     this->value = (char*) calloc(1,size);
     if(this->value == NULL){
         return 0;
@@ -41,5 +44,24 @@ char* Node::getKey(){
 
 char* Node::getValue(){
     return this->value;
+}
+
+void Node::freeNode(){
+    free(this->key);
+    free(this->value);
+    this->next = NULL;
+}
+
+void Node::printNode(){
+    printf("\"%s\":\"%s\"",this->key,this->value);
+
+}
+
+int Node::compare(char* key){
+    int strlength = strlen(this->getKey()) >= strlen(key) ? strlen(this->getKey()) : strlen(key);
+    if (strncmp(this->getKey(),key,strlength) == 0){
+        return 1;
+    }
+    return 0;
 }
 
