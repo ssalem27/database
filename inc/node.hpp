@@ -2,9 +2,11 @@
 #define NODE_H
  
 #include "stdlib.h"
-#include "stdio.h"
+#include <stdio.h>
+#include <string.h>
 #include <iostream>
 #include <typeinfo>
+
 
 template <typename T>
 class Node{
@@ -39,18 +41,21 @@ class Node{
 
     int setValue(T* value){
         int size = 0;
+        char* string;
         if(!value){
             this->value = NULL;
             return 0;
         }
-        size = sizeof(value);
-        this->value = (char*) calloc(1,size);
-        if(this->value == NULL){
-            return 0;
+        if(typeid(value)==typeid(string)){
+            size = sizeof(value);
+            this->value = (char*) calloc(1,size);
+            if(this->value == NULL){
+                return 0;
+            }
+            strncpy(this->value,value,size);
+            return 1;
         }
-
-        strncpy(this->value,value,size);
-        return 1;
+        return -1;
     }
 
     char* getKey(){
@@ -66,15 +71,11 @@ class Node{
         free(this->value);
         this->next = NULL;
     }
-
     void printNode(){
         char* string;
         if(typeid(value)==typeid(string)){
             printf("\"%s\":\"%s\"",this->key,this->value);
         }
-
-        
-
     }
 
     int compare(char* key){

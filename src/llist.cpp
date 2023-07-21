@@ -1,15 +1,15 @@
 #include "llist.h"
 
 
-template <typename T>
-Llist<T>::Llist(){
+
+Llist::Llist(){
     this->head = NULL;
     this->tail = NULL;
     this->length = 0;
 }
 
-template <typename T>
-int Llist<T>::append(Node<T> *node){
+
+int Llist::append(Node *node){
     if(node){
         if(head==NULL){
             head= tail = node;
@@ -23,19 +23,19 @@ int Llist<T>::append(Node<T> *node){
     return -1;
 }
 
-template <typename T>
-Node<T>* Llist<T>::deleteNode(char *key){
-    Node<T>* node = NULL;
-    Node<T>* deleted = NULL;
-    Node<T>* nodeNext = NULL; 
-    Node<T>* current = this->head;
+
+Node* Llist::deleteNode(char *key){
+    Node* node = NULL;
+    Node* deleted = NULL;
+    Node* nodeNext = NULL; 
+    Node* current = this->head;
     
     if(!current){
         return NULL;
     }
 
     if(head->compare(key)){
-        Node<T>* node;
+        Node* node;
         if(head->next){
             node = head->next;
             head->freeNode();
@@ -63,9 +63,8 @@ Node<T>* Llist<T>::deleteNode(char *key){
     return NULL;
 }
 
-template <typename T>
-Node<T>* Llist<T>::get(char *key){
-    Node<T>* current = this->head;
+Node* Llist::get(char *key){
+    Node* current = this->head;
     while(current){
         if (current->compare(key)){
             return current;
@@ -76,10 +75,9 @@ Node<T>* Llist<T>::get(char *key){
 
 }
 
-template <typename T>
-void Llist<T>::freeList(){
-    Node<T>* current = this->head;
-    Node<T>* temp = NULL;
+void Llist::freeList(){
+    Node* current = this->head;
+    Node* temp = NULL;
     while(current->next){
         temp = current->next;
         current->freeNode();
@@ -88,13 +86,12 @@ void Llist<T>::freeList(){
     this->head = this->tail = current;
 }
 
-template <typename T>
-void Llist<T>::printList(){
-    Node<T>* current = this->head;
+void Llist::printList(){
+    Node* current = this->head;
     while(current){
         current->printNode();
         current = current->next;
-        std::cout << "\n";
+        cout << "\n";
     }
 }
 

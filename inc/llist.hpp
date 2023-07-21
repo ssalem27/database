@@ -52,11 +52,13 @@ class Llist{
                 head->freeNode();
                 deleted = head;
                 head = node;
+                this->length--;
                 return deleted;
             }
             head->freeNode();
             deleted = head;
             head = tail = NULL;
+            this->length--;
             return deleted;
         }
         while(current->next){
@@ -95,6 +97,7 @@ class Llist{
             current = temp;
         }
         this->head = this->tail = current;
+        this->length = 0;
     }
 
     void printList(){
@@ -104,6 +107,14 @@ class Llist{
             current = current->next;
             std::cout << "\n";
         }
+    }
+
+    int getLength(){
+        return this->length;
+    }
+
+    Node<T>* getHead(){
+        return this->head;
     }
 };
 

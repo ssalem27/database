@@ -2,20 +2,24 @@
 #define ROW_H
 
 #include "stdlib.h"
-#include "llist.h"
+#include "node.hpp"
+#include "llist.hpp"
+#define BUFFER_SIZE 18
 
 class Row{
     private:
-    int index;
-    Llist* list;
+    char* rowId;
+    Llist<char>* list;
 
     public:
-    Row(int index);
+    Row();
     int addColumn(char* key, char* value = NULL);
     int deleteColumn(char* key);
     int updateVal(char* key, char* value);
     int updateKey(char* oldKey, char* newKey);
-    void deleteRow();
+    char* getRowId();
+    int setRowId(char* rowId);
+    Row* deleteRow();
     void printRow();
 };
 
