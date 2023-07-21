@@ -2,12 +2,14 @@
 #define ROW_H
 
 #include "stdlib.h"
-#include "llist.h"
+#include "node.hpp"
+#include "llist.hpp"
+
 
 class Row{
     private:
     int index;
-    Llist* list;
+    Llist<char>* list;
 
     public:
     Row(int index);

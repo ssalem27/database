@@ -3,16 +3,16 @@
 
 Row::Row(int index){
     this->index = index;
-    this->list = new Llist();
+    this->list = new Llist<char>();
 }
 
 int Row::addColumn(char* key, char* value){
-    Node* node = new Node(key,value);
+    Node<char> *node = new Node<char>(key,value);
     return list->append(node);
 }
 
 int Row::deleteColumn(char* key){
-    Node* deleted = list->deleteNode(key);
+    Node<char>* deleted = list->deleteNode(key);
     if(deleted){
         delete(deleted);
         return 0;
@@ -38,4 +38,5 @@ void Row::printRow(){
     this->list->printList();
     printf("}\n}");
 }
+
 
