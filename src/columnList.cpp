@@ -1,15 +1,14 @@
-#include "llist.h"
+#include "columnList.h"
 
 
 
-Llist::Llist(){
+ColumnList::ColumnList(){
     this->head = NULL;
     this->tail = NULL;
     this->length = 0;
 }
 
-
-int Llist::append(Node *node){
+int ColumnList::append(ColumnNode *node){
     if(node){
         if(head==NULL){
             head= tail = node;
@@ -24,18 +23,18 @@ int Llist::append(Node *node){
 }
 
 
-Node* Llist::deleteNode(char *key){
-    Node* node = NULL;
-    Node* deleted = NULL;
-    Node* nodeNext = NULL; 
-    Node* current = this->head;
+ColumnNode* ColumnList::deleteNode(char *key){
+    ColumnNode* node = NULL;
+    ColumnNode* deleted = NULL;
+    ColumnNode* nodeNext = NULL; 
+    ColumnNode* current = this->head;
     
     if(!current){
         return NULL;
     }
 
     if(head->compare(key)){
-        Node* node;
+        ColumnNode* node;
         if(head->next){
             node = head->next;
             head->freeNode();
@@ -63,8 +62,8 @@ Node* Llist::deleteNode(char *key){
     return NULL;
 }
 
-Node* Llist::get(char *key){
-    Node* current = this->head;
+ColumnNode* ColumnList::get(char *key){
+    ColumnNode* current = this->head;
     while(current){
         if (current->compare(key)){
             return current;
@@ -75,9 +74,9 @@ Node* Llist::get(char *key){
 
 }
 
-void Llist::freeList(){
-    Node* current = this->head;
-    Node* temp = NULL;
+void ColumnList::freeList(){
+    ColumnNode* current = this->head;
+    ColumnNode* temp = NULL;
     while(current->next){
         temp = current->next;
         current->freeNode();
@@ -86,12 +85,20 @@ void Llist::freeList(){
     this->head = this->tail = current;
 }
 
-void Llist::printList(){
-    Node* current = this->head;
+void ColumnList::printList(){
+    ColumnNode* current = this->head;
     while(current){
         current->printNode();
         current = current->next;
-        cout << "\n";
+        std::cout << "\n";
     }
+}
+
+ColumnNode* ColumnList::getHead(){
+    return this->head;
+}
+
+int ColumnList::getLength(){
+    return this->length;
 }
 

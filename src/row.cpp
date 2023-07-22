@@ -1,18 +1,18 @@
 #include "row.h"
 
 
-Row::Row(int index){
-    this->index = index;
-    this->list = new Llist();
+Row::Row(){
+    this->rowId = (char*) calloc(BUFFER_SIZE, sizeof(char));
+    this->list = new ColumnList();
 }
 
 int Row::addColumn(char* key, char* value){
-    Node* node = new Node(key,value);
+    ColumnNode* node = new ColumnNode(key,value);
     return list->append(node);
 }
 
 int Row::deleteColumn(char* key){
-    Node* deleted = list->deleteNode(key);
+    ColumnNode* deleted = list->deleteNode(key);
     if(deleted){
         delete(deleted);
         return 0;
@@ -34,8 +34,23 @@ void Row::deleteRow(){
 }
 
 void Row::printRow(){
-    printf("\"Row\":{\n\"index\": %d\n\"list\":{\n",this->index);
+    printf("\"Row\":{\n\"rowId\": %s\n\"list\":{\n",this->rowId);
     this->list->printList();
     printf("}\n}");
 }
 
+ColumnNode* Row::getColumnHead(){
+    return this->list->getHead();
+}
+
+char* Row::getRowId(){
+    return this->rowId;
+}
+
+int Row::setRowId(char* rowId){
+    if(rowId){
+        strncpy(this->rowId,rowId,BUFFER_SIZE);
+        return 0;
+    }
+    return -1;
+}

@@ -1,12 +1,12 @@
-#include "node.h"
+#include "columnNode.h"
  
-Node::Node(char *key, char *value){
+ColumnNode::ColumnNode(char *key, char *value){
     this->setKey(key);
     this->setValue(value);
     this->next = NULL;
 }
 
-int Node::setKey(char* key){
+int ColumnNode::setKey(char* key){
     int size = 0;
     if(!key){
         this->key = NULL;
@@ -22,7 +22,7 @@ int Node::setKey(char* key){
     return 1;
 }
 
-int Node::setValue(char* value){
+int ColumnNode::setValue(char* value){
     int size = 0;
     if(!value){
         this->value = NULL;
@@ -38,26 +38,26 @@ int Node::setValue(char* value){
     return 1;
 }
 
-char* Node::getKey(){
+char* ColumnNode::getKey(){
     return this->key;
 }
 
-char* Node::getValue(){
+char* ColumnNode::getValue(){
     return this->value;
 }
 
-void Node::freeNode(){
+void ColumnNode::freeNode(){
     free(this->key);
     free(this->value);
     this->next = NULL;
 }
 
-void Node::printNode(){
+void ColumnNode::printNode(){
     printf("\"%s\":\"%s\"",this->key,this->value);
 
 }
 
-int Node::compare(char* key){
+int ColumnNode::compare(char* key){
     int strlength = strlen(this->getKey()) >= strlen(key) ? strlen(this->getKey()) : strlen(key);
     if (strncmp(this->getKey(),key,strlength) == 0){
         return 1;

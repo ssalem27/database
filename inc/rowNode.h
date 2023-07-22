@@ -1,28 +1,28 @@
-#ifndef NODE_H
-#define NODE_H
+#ifndef ROWNODE_H
+#define ROWNODE_H
  
 #include "stdlib.h"
 #include "stdio.h"
 #include <cstring>
 #include <iostream>
-using namespace std;
+#include "row.h"
 
 
-class Node{
+class RowNode{
     private:
         char *key;
-        char *value;
+        Row *value;
 
     public:
-        Node *next;
-        Node(char *key=NULL, char*value=NULL);
+        RowNode *next;
+        RowNode(char *key=NULL, Row*value=NULL);
         int setKey(char* key);
-        int setValue(char* value);
+        int setValue(Row* value);
         char* getKey();
-        char* getValue();
+        Row* getValue();
         void freeNode();
         void printNode();
         int compare(char* key);
 };
 
-#endif /*NODE_H*/
+#endif /*ROWNODE_H*/
