@@ -4,7 +4,7 @@
 Hashmap::Hashmap(){
     length = 0;
     count = 1;
-    map = (RowList**) calloc(ARRAY_SIZE, sizeof(RowList));
+    map = new RowList*[ARRAY_SIZE];
     for(int i=0; i<ARRAY_SIZE; i++){
         map[i] = new RowList;
     }
@@ -75,8 +75,10 @@ void Hashmap::printMap(){
     printf("Hashmap\n{\n");
     printf("\"length\": %d\n",this->length);
     printf("\"map\":{\n");
+    RowList* rowOfI;
     for(int i=0; i<ARRAY_SIZE; i++){
-        if(map[i]->getLength()>0){
+        rowOfI = map[i];
+        if(rowOfI->getLength()>0){
             printf("\"index: %d\n",i);
             map[i]->printList();
         }
@@ -86,38 +88,34 @@ void Hashmap::printMap(){
 
 int main(){
     Hashmap* hashmap = new Hashmap();
-    // Row* row1 = new Row();
-    // row1->addColumn((char*)"key1",(char*)"val1");
-    // row1->addColumn((char*)"key2",(char*)"val2");
+    Row* row1 = new Row();
+    row1->addColumn((char*)"key1",(char*)"val1");
+    row1->addColumn((char*)"key2",(char*)"val2");
 
-    // Row* row2 = new Row();
-    // row2->addColumn((char*)"key3",(char*)"val3");
-    // row2->addColumn((char*)"key4",(char*)"val4");
-    // row2->addColumn((char*)"key5",(char*)"val5");
+    Row* row2 = new Row();
+    row2->addColumn((char*)"key3",(char*)"val3");
+    row2->addColumn((char*)"key4",(char*)"val4");
+    row2->addColumn((char*)"key5",(char*)"val5");
 
-    // Row* row3 = new Row();
-    // row3->addColumn((char*)"key6",(char*)"val6");
+    Row* row3 = new Row();
+    row3->addColumn((char*)"key6",(char*)"val6");
 
-    // Row* row4 = new Row();
-    // row4->addColumn((char*)"key7",(char*)"val7");
-    // row4->addColumn((char*)"key8",(char*)"val8");
-    // row4->addColumn((char*)"key9",(char*)"val9");
-    // row4->addColumn((char*)"key10",(char*)"val10");
-    // row4->addColumn((char*)"key11",(char*)"val11");
+    Row* row4 = new Row();
+    row4->addColumn((char*)"key7",(char*)"val7");
+    row4->addColumn((char*)"key8",(char*)"val8");
+    row4->addColumn((char*)"key9",(char*)"val9");
+    row4->addColumn((char*)"key10",(char*)"val10");
+    row4->addColumn((char*)"key11",(char*)"val11");
 
-    // hashmap->put(row1);
+    hashmap->put(row1);
     // hashmap->get(row1->getRowId())->printRow();
-    // hashmap->put(row2);
+    hashmap->put(row2);
     // hashmap->get(row2->getRowId())->printRow();
-    // hashmap->put(row3);
+    hashmap->put(row3);
     // hashmap->get(row3->getRowId())->printRow();
-    // hashmap->put(row4);
+    hashmap->put(row4);
     // hashmap->get(row4->getRowId())->printRow();
 
-    // hashmap->printMap();
+    hashmap->printMap();
 
-    for(int i=0; i<500; i++){
-        printf("%d\n",hashmap->hash(hashmap->rowId()));
-    }
-    return 0;
 }

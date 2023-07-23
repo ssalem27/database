@@ -12,6 +12,7 @@ int ColumnList::append(ColumnNode *node){
     if(node){
         if(head==NULL){
             head= tail = node;
+            length++;
             return 0;
         }
         tail->next = node;
