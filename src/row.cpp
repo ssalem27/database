@@ -33,10 +33,10 @@ void Row::deleteRow(){
     delete(list);
 }
 
-void Row::printRow(){
-    printf("\"Row\":{\n\"rowId\": %s\n\"list\":{\n",this->rowId);
+void Row::printRow(int i){
+    printf("\"index\":\"%d\",\n\"list\":{\n",i);
     this->list->printList();
-    printf("}\n}");
+    printf("\n}");
 }
 
 ColumnNode* Row::getColumnHead(){

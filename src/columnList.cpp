@@ -88,11 +88,14 @@ void ColumnList::freeList(){
 
 void ColumnList::printList(){
     ColumnNode* current = this->head;
-    while(current){
+    while(current->next){
         current->printNode();
         current = current->next;
-        std::cout << "\n";
+        std::cout << ",\n";
     }
+    current->printNode();
+
+    
 }
 
 ColumnNode* ColumnList::getHead(){

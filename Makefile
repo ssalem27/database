@@ -27,7 +27,7 @@ BINDIR=.
 INCLUDE=$(addprefix -I,$(INCDIR))
 HEADERS=$(wildcard $(INCDIR)/*.h)
 CFLAGS=$(OPTS) $(INCLUDE) $(DEBUG)
-OBJECTS=$(addprefix $(OBJDIR)/,columnNode.o columnList.o row.o rowNode.o rowList.o hashmap.o)
+OBJECTS=$(addprefix $(OBJDIR)/,columnNode.o columnList.o row.o rowNode.o rowList.o hashmap.o database.o)
 #--------------------------------------------------------------------
 # Build Recipies for the Executables (binary)
 #--------------------------------------------------------------------
@@ -36,6 +36,10 @@ all: database
 database: $(OBJECTS) 
 	$(CC) $(CFLAGS) -o $@ $^
 #	g++ -Wall -std=gnu11 -o database columnNode.o columnList.o
+
+$(OBJDIR)/json.o:  $(INCDIR)/json.hpp
+	$(CC) -c $(CFLAGS) -o $@ $<
+#	g++ json.hpp  
 
 $(OBJDIR)/columnNode.o: $(SRCDIR)/columnNode.cpp $(INCDIR)/columnNode.h
 	$(CC) -c $(CFLAGS) -o $@ $<
@@ -60,6 +64,10 @@ $(OBJDIR)/rowList.o: $(SRCDIR)/rowList.cpp $(INCDIR)/rowList.h
 $(OBJDIR)/hashmap.o: $(SRCDIR)/hashmap.cpp $(INCDIR)/hashmap.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 #	g++ hashmap.cpp  
+
+$(OBJDIR)/database.o: $(SRCDIR)/database.cpp $(INCDIR)/database.h
+	$(CC) -c $(CFLAGS) -o $@ $<
+#	g++ database.cpp  
 
 clean:
 	rm -rf $(OBJDIR)/*.o database

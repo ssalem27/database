@@ -17,7 +17,7 @@ class RowList{
         RowNode* deleteNode(char* key);
         RowNode* get(char* key);
         void freeList();
-        void printList();
+        void printList(int i);
         RowNode* getHead();
         int getLength();
 };

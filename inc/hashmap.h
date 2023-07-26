@@ -3,12 +3,16 @@
 
 #include "stdlib.h"
 #include "rowList.h"
+#include "stdio.h"
 #include <random>
+#include <unistd.h>
+#include <fcntl.h>
 
 #define ARRAY_SIZE 17
 
 class Hashmap{
     private:
+    char* Id;
     int count;
     int length;
     RowList** map;
@@ -22,7 +26,9 @@ class Hashmap{
     Row* get(char* key);
     int getLength();
     void deleteRow(char* key);
-    void printMap();
+    void printTable(char* fileName);
+    char* getId();
+    void setId(char* key);
 
 };
 

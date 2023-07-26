@@ -89,10 +89,10 @@ void RowList::freeList(){
     length = 0;
 }
 
-void RowList::printList(){
+void RowList::printList(int i){
     RowNode* current = this->head;
     while(current){
-        current->printNode();
+        current->printNode(i);
         current = current->next;
         std::cout << "\n";
     }

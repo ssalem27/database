@@ -21,7 +21,7 @@ class RowNode{
         char* getKey();
         Row* getValue();
         void freeNode();
-        void printNode();
+        void printNode(int i);
         int compare(char* key);
 };
 

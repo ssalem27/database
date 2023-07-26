@@ -18,7 +18,7 @@ class Row{
     int updateVal(char* key, char* value);
     int updateKey(char* oldKey, char* newKey);
     void deleteRow();
-    void printRow();
+    void printRow(int i);
     ColumnNode* getColumnHead();
     char* getRowId();
     int setRowId(char* rowId);

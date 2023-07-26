@@ -71,16 +71,15 @@ void Hashmap::deleteRow(char* key){
     }
 }
 
-void Hashmap::printMap(){
-    printf("Hashmap\n{\n");
-    printf("\"length\": %d\n",this->length);
+void Hashmap::printTable(char* fileName){
+    int file_desc = open(fileName, O_WRONLY | O_TRUNC | O_CREAT);
+    dup2(file_desc,1);
+    printf("{\n");
+    printf("\"length\": %d,\n",this->length);
     printf("\"map\":{\n");
-    RowList* rowOfI;
     for(int i=0; i<ARRAY_SIZE; i++){
-        rowOfI = map[i];
-        if(rowOfI->getLength()>0){
-            printf("\"index: %d\n",i);
-            map[i]->printList();
+        if(map[i]->getLength()>0){
+            map[i]->printList(i);
         }
     }
     std::cout<<"}\n}\n";
@@ -88,17 +87,17 @@ void Hashmap::printMap(){
 
 int main(){
     Hashmap* hashmap = new Hashmap();
-    Row* row1 = new Row();
-    row1->addColumn((char*)"key1",(char*)"val1");
-    row1->addColumn((char*)"key2",(char*)"val2");
+    // Row* row1 = new Row();
+    // row1->addColumn((char*)"key1",(char*)"val1");
+    // row1->addColumn((char*)"key2",(char*)"val2");
 
-    Row* row2 = new Row();
-    row2->addColumn((char*)"key3",(char*)"val3");
-    row2->addColumn((char*)"key4",(char*)"val4");
-    row2->addColumn((char*)"key5",(char*)"val5");
+    // Row* row2 = new Row();
+    // row2->addColumn((char*)"key3",(char*)"val3");
+    // row2->addColumn((char*)"key4",(char*)"val4");
+    // row2->addColumn((char*)"key5",(char*)"val5");
 
-    Row* row3 = new Row();
-    row3->addColumn((char*)"key6",(char*)"val6");
+    // Row* row3 = new Row();
+    // row3->addColumn((char*)"key6",(char*)"val6");
 
     Row* row4 = new Row();
     row4->addColumn((char*)"key7",(char*)"val7");
@@ -107,15 +106,15 @@ int main(){
     row4->addColumn((char*)"key10",(char*)"val10");
     row4->addColumn((char*)"key11",(char*)"val11");
 
-    hashmap->put(row1);
-    // hashmap->get(row1->getRowId())->printRow();
-    hashmap->put(row2);
-    // hashmap->get(row2->getRowId())->printRow();
-    hashmap->put(row3);
+    // hashmap->put(row1);
+    // // hashmap->get(row1->getRowId())->printRow();
+    // hashmap->put(row2);
+    // // hashmap->get(row2->getRowId())->printRow();
+    // hashmap->put(row3);
     // hashmap->get(row3->getRowId())->printRow();
     hashmap->put(row4);
     // hashmap->get(row4->getRowId())->printRow();
 
-    hashmap->printMap();
+    hashmap->printTable((char*)"testj.json");
 
 }

@@ -53,9 +53,10 @@ void RowNode::freeNode(){
     this->next = NULL;
 }
 
-void RowNode::printNode(){
-    printf("\"%s\": ",this->key);
-    this->value->printRow();
+void RowNode::printNode(int i){
+    printf("\"%s\":{\n",this->key);
+    this->value->printRow(i);
+    std::cout<<"\n}";
 
 }
 
